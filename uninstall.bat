@@ -1,27 +1,28 @@
 @echo off 
 cls
-echo 即将卸载RunApp
-echo 1 卸载程序
-echo 2 卸载程序并删除用户数据
-echo 3 取消卸载
+echo RunApp Uninstaller
+echo 1 Uninstall
+echo 2 Uninstall and remove user data
+echo 3 Cancel
 echo.
-choice /c 123 /m 请选择
-if errorlevel 3 goto End
-if errorlevel 2 goto UninstallAndRemoveUserData
+
+choice /c 123 /m "Please choose"
 if errorlevel 1 goto Uninstall
+if errorlevel 2 goto UninstallAndRemoveUserData
+if errorlevel 3 goto End
 goto End
 
 :UninstallAndRemoveUserData
-cscript installer.js uninstall
+cscript installer.jse uninstall
 rmdir /s /q "%AppData%\Microsoft\Windows\Command Shortcuts"
 goto Complete
 
 :Uninstall
-cscript installer.js uninstall
+cscript installer.jse uninstall
 goto Complete
 
 :Complete
-echo 卸载完成 Good luck
+echo Uninstall complete
 pause
 
 :End
